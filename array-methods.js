@@ -21,6 +21,7 @@ var hundredThousandairs = dataset.bankBalances.filter(function( el ) {
     }
   assign the resulting array to `roundedDollar`
 */
+
 var roundedDollar = dataset.bankBalances.map(function( el ) {
   return {
     amount: el.amount,
@@ -28,8 +29,6 @@ var roundedDollar = dataset.bankBalances.map(function( el ) {
     rounded: Math.round(el.amount)
   };
 });
-
-console.log(roundedDollar);
 
 /*
   set a the `amount` value for each object in bankBalances
@@ -41,10 +40,19 @@ console.log(roundedDollar);
     }
   assign the resulting array to `roundedDime`
 */
-var roundedDime = null;
+
+var roundedDime = dataset.bankBalances.map(function( el ) {
+  return {
+    amount: Number(Number(el.amount).toFixed(1)),
+    state: el.state
+  };
+});
 
 // set sumOfBankBalances to the sum of all amounts in bankBalances
-var sumOfBankBalances = null;
+
+var sumOfBankBalances = parseFloat(dataset.bankBalances.reduce(function(lel, ele){
+  return lel + parseFloat(ele.amount);
+}, 0).toFixed(2));
 
 /*
   set sumOfInterests to the sum of the 18.9% interest
@@ -58,6 +66,7 @@ var sumOfBankBalances = null;
     Delaware
   the result should be rounded to the nearest cent
  */
+
 var sumOfInterests = null;
 
 /*
